@@ -1,15 +1,18 @@
 package lectures;
 
 
-import beans.Car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import mockdata.MockData;
+
 import org.assertj.core.util.Lists;
 import org.junit.Test;
+
+import beans.Car;
+import beans.Person;
+import mockdata.MockData;
 
 public class Lecture8 {
 
@@ -44,6 +47,12 @@ public class Lecture8 {
         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
     counting.forEach((name, count) -> System.out.println(name + " > " + count));
+  }
+  
+  @Test
+  public void groupAndCoutingActualClass() throws Exception {
+	  Map<String, Long> countingAndGroupingByGender = MockData.getPeople().stream().collect(Collectors.groupingBy(Person::getGender, Collectors.counting()));
+	  countingAndGroupingByGender.forEach((gender, count) -> System.out.println(gender + " > "  + count));
   }
 
 }

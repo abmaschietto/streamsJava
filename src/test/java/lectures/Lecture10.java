@@ -13,7 +13,7 @@ public class Lecture10 {
   private static final List<ArrayList<String>> arrayListOfNames = Lists.newArrayList(
       Lists.newArrayList("Mariam", "Alex", "Ismail"),
       Lists.newArrayList("John", "Alesha", "Andre"),
-      Lists.newArrayList("Susy", "Ali")
+      Lists.newArrayList("Susy", "Ali", "Alex")
   );
 
   @Before
@@ -40,14 +40,10 @@ public class Lecture10 {
   @Test
   public void withFlatMap() throws Exception {
 //   [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
-
-    List<String> names = arrayListOfNames.stream()
-        .flatMap(List::stream)
-        .collect(Collectors.toList());
-
-    System.out.println(names);
-
+	  List<String> flatMapWithouDuplicates = arrayListOfNames.stream().flatMap(List::stream).distinct()
+	  .collect(Collectors.toList());
+	  System.out.println(flatMapWithouDuplicates);
+	  
   }
-
 }
 
